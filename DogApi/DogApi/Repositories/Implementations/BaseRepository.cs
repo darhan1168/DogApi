@@ -5,7 +5,7 @@ using AppContext = DogApi.DataBase.AppContext;
 
 namespace DogApi.Repositories.Implementations;
 
-public class BaseRepository<T> : IBaseRepository<T> where T : class
+public sealed class BaseRepository<T> : IBaseRepository<T> where T : class
 {
     private readonly AppContext _context;
     private readonly DbSet<T> _dbSet;
@@ -16,7 +16,13 @@ public class BaseRepository<T> : IBaseRepository<T> where T : class
         _dbSet = context.Set<T>();
     }
     
-    public virtual async Task<List<T>> GetAsync(
+    public async Task AddAsync(T item)
+    {
+        await _dbSet.AddAsync(item);
+        await _context.SaveChangesAsync();
+    }
+    
+    public async Task<List<T>> GetAsync(
         Expression<Func<T, bool>> filter = null,
         Expression<Func<IQueryable<T>, IOrderedQueryable<T>>> orderBy = null)
     {
