@@ -14,16 +14,14 @@ namespace DogApi.Migrations
                 name: "Dogs",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     color = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     tail_length = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     weight = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Dogs", x => x.id);
+                    table.PrimaryKey("PK_Dogs", x => x.name);
                 });
         }
 

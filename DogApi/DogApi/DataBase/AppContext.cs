@@ -10,4 +10,10 @@ public class AppContext : DbContext
     public AppContext(DbContextOptions options) : base(options)
     {
     }
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Dog>()
+            .HasKey(d => d.Name); 
+    }
 }

@@ -6,9 +6,6 @@ namespace DogApi.Models;
 public class Dog
 {
     [Key]
-    [Column("id")]
-    public int Id { get; set; }
-
     [Column("name")]
     public string Name { get; set; }
 

@@ -23,22 +23,14 @@ namespace DogApi.Migrations
 
             modelBuilder.Entity("DogApi.Models.Dog", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("name");
 
                     b.Property<string>("Color")
                         .IsRequired()
-                        .HasColumnType("nvarchar(30)")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("color");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)")
-                        .HasColumnName("name");
 
                     b.Property<decimal>("TailLength")
                         .HasColumnType("decimal(18,2)")
@@ -48,7 +40,7 @@ namespace DogApi.Migrations
                         .HasColumnType("decimal(18,2)")
                         .HasColumnName("weight");
 
-                    b.HasKey("Id");
+                    b.HasKey("Name");
 
                     b.ToTable("Dogs");
                 });
