@@ -3,9 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DogApi.Models;
 
-//name color tail_length weight
-
-
 public class Dog
 {
     [Key]
