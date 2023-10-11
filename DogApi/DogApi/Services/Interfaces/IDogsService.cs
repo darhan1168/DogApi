@@ -5,4 +5,6 @@ namespace DogApi.Services.Interfaces;
 public interface IDogsService
 {
     Task<List<Dog>> GetDogs();
+    
+    Task AddDog(Dog dog);
 }

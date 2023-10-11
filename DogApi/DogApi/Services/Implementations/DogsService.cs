@@ -19,4 +19,12 @@ public class DogsService : IDogsService
 
         return dogs;
     }
+
+    public async Task AddDog(Dog dog)
+    {
+        if (dog == null)
+            throw new ArgumentNullException(nameof(dog), "Dog object cannot be null.");
+
+        await _repository.AddAsync(dog);
+    }
 }
