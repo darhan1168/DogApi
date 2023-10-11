@@ -1,4 +1,5 @@
 using DogApi.Helpers;
+using DogApi.Models;
 using DogApi.Services.Interfaces;
 using DogApi.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -6,17 +7,16 @@ using Microsoft.AspNetCore.Mvc;
 namespace DogApi.Controllers;
 
 [ApiController]
-[Route("[controller]")]
-public class DogsController : Controller
+public class DogController : Controller
 {
     private readonly IDogsService _dogsService;
 
-    public DogsController(IDogsService dogsService)
+    public DogController(IDogsService dogsService)
     {
         _dogsService = dogsService;
     }
 
-    [HttpGet]
+    [HttpGet("dogs")]
     public async Task<IActionResult> GetDogs()
     {
         var dogs = await _dogsService.GetDogs();
@@ -30,5 +30,21 @@ public class DogsController : Controller
         }).ToList();
         
         return Ok(dogViewModels);
+    }
+
+    [HttpPost("dog")]
+    public async Task<IActionResult> GetDogs(DogViewModel dogViewModel)
+    {
+        if (ModelState.IsValid)
+        {
+            var dog = new Dog();
+            dogViewModel.MapTo(dog);
+
+            await _dogsService.AddDog(dog);
+
+            return Ok();
+        }
+        
+        return BadRequest(ModelState);
     }
 }
