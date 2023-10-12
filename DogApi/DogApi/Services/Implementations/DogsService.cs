@@ -52,8 +52,8 @@ public class DogsService : IDogsService
     {
         if (string.IsNullOrWhiteSpace(dog.Name) || 
             string.IsNullOrWhiteSpace(dog.Color) || 
-            dog.TailLength < 0 || 
-            dog.Weight < 0)
+            dog.TailLength <= 0 || 
+            dog.Weight <= 0)
         {
             throw new ArgumentException("Invalid dog values.");
         }
