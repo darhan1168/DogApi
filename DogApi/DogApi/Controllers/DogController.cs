@@ -1,7 +1,6 @@
-using DogApi.Helpers;
+using DogApi.Enums;
 using DogApi.Models;
 using DogApi.Services.Interfaces;
-using DogApi.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DogApi.Controllers;
@@ -17,29 +16,18 @@ public class DogController : Controller
     }
 
     [HttpGet("dogs")]
-    public async Task<IActionResult> GetDogs()
+    public async Task<IActionResult> GetDogs(SortingParam sortBy = 0)
     {
-        var dogs = await _dogsService.GetDogs();
+        var dogs = await _dogsService.GetDogs(sortBy);
 
-        var dogViewModels = dogs.Select(dog =>
-        {
-            var dogViewModel = new DogViewModel();
-            dog.MapTo(dogViewModel);
-            
-            return dogViewModel;
-        }).ToList();
-        
-        return Ok(dogViewModels);
+        return Ok(dogs);
     }
 
     [HttpPost("dog")]
-    public async Task<IActionResult> GetDogs(DogViewModel dogViewModel)
+    public async Task<IActionResult> GetDogs(Dog dog)
     {
         if (ModelState.IsValid)
         {
-            var dog = new Dog();
-            dogViewModel.MapTo(dog);
-
             await _dogsService.AddDog(dog);
 
             return Ok();
