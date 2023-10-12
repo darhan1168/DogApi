@@ -2,6 +2,7 @@ using DogApi.Enums;
 using DogApi.Models;
 using DogApi.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace DogApi.Controllers;
 
@@ -16,11 +17,13 @@ public class DogController : Controller
     }
 
     [HttpGet("dogs")]
-    public async Task<IActionResult> GetDogs(SortingParam sortBy = 0)
+    public async Task<IActionResult> GetDogs(int pageNumber = 1, SortingParam sortBy = 0)
     {
+        const int pageSize = 10;
+        
         var dogs = await _dogsService.GetDogs(sortBy);
 
-        return Ok(dogs);
+        return Ok(dogs.ToPagedList(pageNumber, pageSize));
     }
 
     [HttpPost("dog")]
