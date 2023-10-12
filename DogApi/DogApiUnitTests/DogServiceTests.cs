@@ -46,4 +46,26 @@ public class DogServiceTests
         
         await Assert.ThrowsAsync<InvalidOperationException>(() => dogsService.AddDog(newDog));
     }
+    
+    
+    [Theory]
+    [InlineData(null, "Black", 1, 10)] 
+    [InlineData("Buddy", null, 1, 10)] 
+    [InlineData("Buddy", "Black", 0, 10)] 
+    [InlineData("Buddy", "Black", 1, 0)] 
+    [InlineData("", "Black", 1, 10)] 
+    [InlineData("Buddy", "", 1, 10)] 
+    public async Task AddDog_InvalidDogValues_ArgumentException(
+        string name, string color, decimal tailLength, decimal weight)
+    {
+        var repositoryMock = new Mock<IBaseRepository<Dog>>();
+        repositoryMock.Setup(repo => repo.GetAsync(It.IsAny<Expression<Func<Dog, bool>>>(), null))
+            .ReturnsAsync(new List<Dog>());
+
+        var dogsService = new DogsService(repositoryMock.Object);
+
+        var invalidDog = new Dog { Name = name, Color = color, TailLength = tailLength, Weight = weight };
+        
+        await Assert.ThrowsAsync<ArgumentException>(() => dogsService.AddDog(invalidDog));
+    }
 }
