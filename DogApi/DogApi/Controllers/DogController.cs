@@ -27,7 +27,7 @@ public class DogController : Controller
     }
 
     [HttpPost("dog")]
-    public async Task<IActionResult> GetDogs(Dog dog)
+    public async Task<IActionResult> AddDog([FromBody] Dog dog)
     {
         if (ModelState.IsValid)
         {
@@ -36,6 +36,6 @@ public class DogController : Controller
             return Ok();
         }
         
-        return BadRequest(ModelState);
+        return BadRequest("Invalid dog data. Please check the request format.");
     }
 }
