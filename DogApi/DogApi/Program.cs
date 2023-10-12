@@ -31,6 +31,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMiddleware<ExceptionsHandlingMiddleware>();
+app.UseMiddleware<RequestLimitingMiddleware>();
 
 app.UseHttpsRedirection();
 
