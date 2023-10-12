@@ -39,15 +39,14 @@ public class DogsService : IDogsService
         if (dog == null)
             throw new ArgumentNullException(nameof(dog), "Dog object cannot be null.");
 
-        EnsureUniqueDogName(dog.Name);
+        await EnsureUniqueDogName(dog.Name);
         
         await _repository.AddAsync(dog);
     }
     
-    private void EnsureUniqueDogName(string name)
+    private async Task EnsureUniqueDogName(string name)
     {
-        var existingDog = _repository.GetAsync(d => 
-            string.Equals(d.Name, name, StringComparison.OrdinalIgnoreCase)).Result;
+        var existingDog = await _repository.GetAsync(d => d.Name == name);
 
         if (existingDog.Any())
             throw new InvalidOperationException("A dog with the same name already exists in the database.");

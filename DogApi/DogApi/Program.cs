@@ -1,3 +1,4 @@
+using DogApi.Middlewares;
 using DogApi.Repositories.Implementations;
 using DogApi.Repositories.Interfaces;
 using DogApi.Services.Implementations;
@@ -28,6 +29,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionsHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
