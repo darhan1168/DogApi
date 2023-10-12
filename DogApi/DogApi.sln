@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogApi", "DogApi\DogApi.csproj", "{EC4DCD1F-4BB5-4D60-B992-984EE19D8F60}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogApiUnitTests", "DogApiUnitTests\DogApiUnitTests.csproj", "{52056CA5-8B5C-4F73-91D0-5FBE340D620A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{EC4DCD1F-4BB5-4D60-B992-984EE19D8F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC4DCD1F-4BB5-4D60-B992-984EE19D8F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC4DCD1F-4BB5-4D60-B992-984EE19D8F60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52056CA5-8B5C-4F73-91D0-5FBE340D620A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52056CA5-8B5C-4F73-91D0-5FBE340D620A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52056CA5-8B5C-4F73-91D0-5FBE340D620A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52056CA5-8B5C-4F73-91D0-5FBE340D620A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
