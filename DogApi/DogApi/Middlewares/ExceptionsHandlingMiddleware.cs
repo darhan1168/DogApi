@@ -30,6 +30,10 @@ public class ExceptionsHandlingMiddleware
         {
             await HandleExceptionAsync(httpContext, ex.Message, HttpStatusCode.BadRequest, ex.Message);
         }
+        catch (ArgumentException ex)
+        {
+            await HandleExceptionAsync(httpContext, ex.Message, HttpStatusCode.BadRequest, ex.Message);
+        }
         catch (Exception ex)
         {
             await HandleExceptionAsync(httpContext, ex.Message, HttpStatusCode.InternalServerError, "Internet server error");
